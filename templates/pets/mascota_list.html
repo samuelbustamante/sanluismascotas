@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="main">
+  <div class="container_12">
+    <div class="wrapper">
+      <article class="grid_15">
+        <table>
+        {% for animal in object_list %}
+          <tr><td>Edad aproxii: <?php echo "Hola mundo"; ?> </td><td>{{ animal.get_edad_display }}</td></tr>
+          <tr><td>Raza: </td><td></td>{{ animal.raza_display }}</tr>
+          <tr><td>Sexo: </td><td>{{ animal.get_sexo_display }}</td></tr>
+          <tr><td>Tamaño: </td><td>{{ animal.get_tamanio_display }}</td></tr>
+          <tr><td>Pelaje: </td><td>{{ animal.get_pelaje_display }}</td></tr>
+          <tr><td>Color: </td><td>{{ animal.color }}</td></tr>
+          <tr><td>Comentario: </td><td>{{ animal.comentario }}</td></tr>
+        {% endfor %}
+        </table>
+      </article>
+    </div>
+  </div>
+</div>
+{% endblock %}

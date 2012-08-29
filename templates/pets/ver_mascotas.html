@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block menu %}
+<ul class="menu">
+    <li><a class="item" href="/">Inicio</a></li>
+    <li><a class="item" href="#">Ver mascotas</a>
+        <ul>
+             <li><a href="/mostrar/mascotas/a/">Adopcion</a></li>
+             <li><a href="/mostrar/mascotas/p/">Perdidos</a></li>
+             <li><a href="/mostrar/mascotas/e/">Encontrados</a></li>
+        </ul>
+    </li>
+    <li><a class="item" href="/zoonosis/">Zoonosis</a></li>
+    <li><a class="item" href="/contacto/">Contacto</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="main">
+  <div class="container_12">
+    <div class="wrapper">
+    <h3>Bienvenido al panel de administraci&oacute;n de mascotas. Aqu&iacute; ud podr&aacute; administrar sus mascotas ingresadas o <a href="http://www.sanluismascotas.com.ar/crear/mascota/">INGRESAR</a> una nueva mascota</h3>
+      <article class="grid_15">
+        <table>
+        {% for mascota in mascotas %}
+ 	  {% if mascota.image %}
+	      <tr><td><img src="{{ mascota.image.url_90x90 }}" /></td></tr>
+	  {% else %}
+              {% if mascota.especie == 'p' %}
+              <tr><td><img src="/static/images/imagenprueba.png"/></td></tr>
+              {% else %}
+              <tr><td><img src="/static/images/imagenprueba2.png"/></td></tr>
+              {% endif %}
+          {% endif %}
+          <tr><td>{{ mascota.nombre }}</td>
+              <td><a href="/editar/mascota/{{ mascota.id }}/">Modificar</a> | 
+                  <a href="/borrar/mascota/{{ mascota.id }}/">Eliminar</a></td></tr>
+          <tr><td>Edad: </td><td>{{ mascota.get_edad_display }}</td></tr>
+          <tr><td>Raza: </td><td>{{ mascota.raza }}</td></tr>
+          <tr><td>Sexo: </td><td>{{ mascota.get_sexo_display }}</td></tr>
+          <tr><td>Tama&ntilde;o: </td><td>{{ mascota.get_tamanio_display }}</td></tr>
+          <tr><td>Pelaje: </td><td>{{ mascota.get_pelaje_display }}</td></tr>
+          <tr><td>Color: </td><td>{{ mascota.color }}</td></tr>
+	  {% if mascota.comentario %}
+          <tr><td>Comentario: </td><td>{{ mascota.comentario }}</td></tr>
+	  {% endif %}
+        {% endfor %}
+        </table>
+      </article>
+    </div>
+  </div>
+</div>
+{% endblock %}

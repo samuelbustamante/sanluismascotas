@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block menu %}
+<ul class="menu">
+    <li><a class="item" href="/ingresar/">Ingresar</a></li>
+    <li class="active"><a class="item" href="/registrarse/">Registrarse</a></li>
+    <li><a class="item" href="/">Inicio</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="main">
+  <div class="container_12">
+    <div class="wrapper">
+      <article class="grid_16">
+	{% if register %}
+	<h3>Felicitaciones!!! Se a registrado correctamante <a href="http://www.sanluismascotas.com.ar/ingresar/"><b> Ingresar</b></a></h3>
+	{% else %}
+        <form action="." method="post">{% csrf_token %}
+          <table class="derecha_a">
+              {{ form.as_table }}
+              <td><input type="submit" value="Registrarse" /></td>
+            <tr>
+          </table>
+        </form>
+	{% endif %}
+      </article>
+    </div>
+  </div>
+</div>
+{% endblock %}

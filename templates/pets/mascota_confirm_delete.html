@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block menu %}
+<ul class="menu">
+    <li><a class="item" href="/">Inicio</a></li>
+    <li><a class="item" href="/mostrar/mascotas/">Ver mascotas</a>
+        <ul>
+             <li><a href="/mostrar/mascotas/a/">Adopcion</a></li>
+             <li><a href="/mostrar/mascotas/p/">Perdidos</a></li>
+             <li><a href="/mostrar/mascotas/e/">Encontrados</a></li>
+        </ul>
+    </li>
+    <li><a class="item" href="#">Zoonosis</a></li>
+    <li><a class="item" href="/contacto/">Contacto</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="main">
+  <div class="container_12">
+    <div class="wrapper">
+      <article class="grid_15">
+        <form method="post" action=".">{% csrf_token %}
+          <table>
+            {{ form.as_table }}
+          </table>
+          <input type="submit" name="create" value="Eliminar Mascota">
+        </form>
+      </article>
+    </div>
+  </div>
+</div>
+{% endblock %}

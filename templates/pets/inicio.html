@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block menu %}
+<ul class="menu">
+    <li class="active"><a class="item" href="/">Inicio</a></li>
+    <li><a class="item" href="#">Ver mascotas</a>
+        <ul>
+  	     <li><a href="/mostrar/mascotas/a/">Adopcion</a></li>
+	     <li><a href="/mostrar/mascotas/p/">Perdidos</a></li>
+	     <li><a href="/mostrar/mascotas/e/">Encontrados</a></li>
+        </ul>
+    </li>
+    <li><a class="item" href="/arka/">Arka-Refugio</a></li>
+    <li><a class="item" href="/zoonosis/">Zoonosis</a></li>
+    <li><a class="item" href="/contacto/">Contacto</a></li>
+</ul>
+{% endblock %}
+
+{% block banner %}
+<div class="row-3">
+  <div class="main">
+    <div class="container_12">
+      <div class="wrapper">
+        <div class="grid_12">
+          <div class="slider-wrapper">
+            <div class="slider">
+              <ul class="items">
+                <li><img src="/static/images/slider-img1.png" alt="" /></li>
+                <li><img src="/static/images/slider-img2.png" alt="" /></li>
+                <li><img src="/static/images/slider-img3.png" alt="" /></li>
+              </ul>
+            </div>
+          </div>
+          <div class="search_form">
+             <strong class="text-1">Busca</strong>
+                                <strong class="text-2">Tu <strong>Mascota</strong></strong>
+                                
+                                <form method="POST" action="/search/" id="search-form" >
+                                	<fieldset>
+                                    	<div class="rowElem">
+                                            <label>Especie</label>
+					    {{ form.especie }}
+                                        </div>
+                                        <div class="rowElem">
+                                            <label>Busco</label>
+					    {{ form.tipo }}
+                                        </div>
+ 
+                                        <a class="button-form" href="#" onClick="document.getElementById('search-form').submit()">Buscar!</a>
+                                    </fieldset>
+             </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="main">
+  <div class="wrapper">
+  <div class="container_12">
+      <section class="grid_8">
+      <article class="grid_14">
+                        
+                    	<h3 class="border-bot item">QUIENES SOMOS?</h3> 
+                        <p class="color-3 prev-indent-bot"><v>EN ESTE MOMENTO LA WEB ESTA EN ETAPA DE DESARROLLO, ESPERAMOS TENERLA TERMINADA PARA EL 26 DE MARZO.</b></BR><b>San Luis Mascotas</b> es un sitio web cuyo prop&oacute;sito es ayudar a encontrar un hogar a los animales de la calle, publicar mascotas extraviadas y publicar mascotas encontradas que se creen fueron perdidas por sus due&ntilde;os. Nuestro fin no es ni pol&iacute;tico ni lucrativo la web es totalmente GRATUITA</p>
+
+
+                        
+                    </article>
+	  
+	  <div>
+	  
+</br> </br>  </br>     <h3 class="border-bot item"></br></br></br></br>ÚLTIMAS MASCOTAS</h3>
+	{% for pet in pets_z %}
+          <article class="grid_4 alpha">
+	    {% if pet.image %}
+              <tr><td><a href="http://www.sanluismascotas.com.ar/mostrar/mascotas/a/"><img class="figure" src="{{ pet.image.url_150x150 }}" /></a></td></tr>
+              
+            {% else %}
+	            {% if pet.especie == 'p' %}
+        	    <a href="http://www.sanluismascotas.com.ar/mostrar/mascotas/a/"><img class="figure" src="/static/images/imagenprueba.png"/></a>
+	            {% else %}
+        	    <a href="http://www.sanluismascotas.com.ar/mostrar/mascotas/a/"><img class="figure" src="/static/images/imagenprueba2.png"/></a>
+	            {% endif %}
+	    {% endif %}
+            <strong class="item">{{ pet.nombre }}</strong>
+          </article>
+        {% endfor %}
+        {% for pet in pets %}
+          <article class="grid_4 alpha">
+	    {% if pet.image %}
+              <tr><td><a href="http://www.sanluismascotas.com.ar/mostrar/mascotas/a/"><img  class="figure"src="{{ pet.image.url_150x150 }}" /></a></td></tr>
+            {% else %}
+                    {% if pet.especie == 'p' %}
+                    <a href="http://www.sanluismascotas.com.ar/mostrar/mascotas/a/"><img class="figure" src="/static/images/imagenprueba.png"/></a>
+                    {% else %}
+                    <a href="http://www.sanluismascotas.com.ar/mostrar/mascotas/a/"><img class="figure" src="/static/images/imagenprueba2.png"/></a>
+                    {% endif %}
+            {% endif %}
+            <strong class="item">{{ pet.nombre }}</strong>
+          </article>
+        {% endfor %}
+
+
+<!--
+        <h2 class="border-bot">Como llegar a Zoonosis!</h2>
+        <p class="color-3 prev-indent-bot">Acercate a la Ex - Estacion de Trenes, Av. Lafinur y Av.Illia De lunes a viernes, de 7 a 19hs. </p>
+        <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.es/maps/ms?vpsrc=6&amp;ctz=180&amp;ie=UTF8&amp;msa=0&amp;msid=204831603218837668878.0004b028ee504f4bc13e6&amp;ll=-33.299112,-66.348238&amp;spn=0,0&amp;t=m&amp;output=embed"></iframe><br /><small><br>Ver <a href="http://maps.google.es/maps/ms?vpsrc=6&amp;ctz=180&amp;ie=UTF8&amp;msa=0&amp;msid=204831603218837668878.0004b028ee504f4bc13e6&amp;ll=-33.299112,-66.348238&amp;spn=0,0&amp;t=m&amp;source=embed" style="color:#0000FF;text-align:left">Mapa</a> mas grande</small>
+        <br>
+        <p class="color-4 indent-bot">Te estamos esperando.</p>
+-->
+      <div>
+      </section>
+      <section class="grid_4">
+        <h3 class="border-bot item">EVENTOS</h3>
+        {% for evento in eventos %}
+		&nbsp;
+		
+	      <div class="wrapper">
+       	    <div class="date-box">
+           	  {{ evento.fecha|date:"j" }}<br />
+              <span>{{ evento.fecha|date:"F"|slice:":3" }}</span>
+            </div>
+            <div class="extra-box">
+              <strong class="color-5">{{ evento.lugar }}</strong>  
+                <div class="color-5">{{ evento.comentario }} </div>
+            </div>
+          </div>
+        
+		{% endfor %}
+		
+		
+	   </section>
+    </div>
+  </div>
+</div>
+{% endblock %}
